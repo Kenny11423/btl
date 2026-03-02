@@ -1,0 +1,55 @@
+<?php
+require_once __DIR__ . "/../../config/database.php";
+
+class User {
+
+    private $conn;
+
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->getConnection();
+    }
+
+    public function checkLogin($email) {
+
+    $sql = "SELECT * FROM users WHERE email=?";
+    $stmt = mysqli_prepare($this->conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_assoc($result);
+    }
+    public function emailExists($email) {
+
+    $sql = "SELECT user_id FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($this->conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    return $result->num_rows > 0;
+}
+    public function register($fullname, $email, $password) {
+
+    $sql = "INSERT INTO users (fullname, email, password)
+            VALUES (?, ?, ?)";
+
+    $stmt = mysqli_prepare($this->conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $fullname, $email, $password);
+
+    return mysqli_stmt_execute($stmt);
+}
+public function logout() {
+
+    session_start();        // đảm bảo session đang mở
+    session_unset();        // xóa toàn bộ biến session
+    session_destroy();      // hủy session
+
+    header("Location: index.php?controller=auth&action=login");
+    exit();
+}
+}
