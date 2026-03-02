@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../models/Product.php';
 class HomeController {
 
     public function index() {
@@ -7,6 +8,8 @@ class HomeController {
         header("Location: index.php?controller=auth&action=login");
         exit();
     }
+    // Lấy 4 sản phẩm đầu tiên
+        $featuredProducts = Product::getFeaturedProducts();
 
     require_once __DIR__ . '/../views/home/mainpage.php';
 }

@@ -23,8 +23,7 @@ if (!isset($_SESSION["user_id"])) {
         <a href="#">About</a>
         <a href="#">Testimonials</a>
         <a href="#">Contact</a>
-     <a href="index.php?controller=auth&action=logout" class="logout-btn">
-            Đăng Xuất
+        <a href="index.php?controller=auth&action=logout" >Đăng Xuất</a>
     </nav>
 </header>
 
@@ -42,45 +41,30 @@ if (!isset($_SESSION["user_id"])) {
     <h2>Featured Products</h2>
     <div class="underline"></div>
 
-    <div class="product-grid">
+   <div class="product-grid">
 
-        <!-- PRODUCT 1 -->
+    <?php foreach ($featuredProducts as $product): ?>
         <div class="card">
-            <div class="image-placeholder"></div>
-            <h3>Smartphone X</h3>
-            <p>Latest generation smartphone with AI camera.</p>
-            <span class="price">$999</span>
-            <button>Buy Now</button>
-        </div>
 
-        <!-- PRODUCT 2 -->
-        <div class="card">
-            <div class="image-placeholder"></div>
-            <h3>Laptop Pro</h3>
-            <p>Powerful and lightweight laptop.</p>
-            <span class="price">$1499</span>
-            <button>Buy Now</button>
-        </div>
+            <!-- Ảnh sản phẩm -->
+            <div class="product-image">
+                <img src="/assets/Images/<?= $product['image'] ?>"
+                     alt="<?= $product['product_name'] ?>">
+            </div>
 
-        <!-- PRODUCT 3 -->
-        <div class="card">
-            <div class="image-placeholder"></div>
-            <h3>Smartwatch S</h3>
-            <p>Track your fitness and stay connected.</p>
-            <span class="price">$299</span>
-            <button>Buy Now</button>
-        </div>
+            <h3><?= $product['product_name'] ?></h3>
+            <p><?= $product['description'] ?></p>
 
-        <!-- PRODUCT 4 -->
-        <div class="card">
-            <div class="image-placeholder"></div>
-            <h3>Headphones Z</h3>
-            <p>Immersive sound with noise cancelling.</p>
-            <span class="price">$199</span>
-            <button>Buy Now</button>
-        </div>
+            <span class="price">
+                <?= number_format($product['price'], 0, ',', '.') ?>đ
+            </span>
 
-    </div>
+            <button>Mua Ngay</button>
+
+        </div>
+    <?php endforeach; ?>
+
+</div>
 </section>
 <footer class="footer">
     <div class="footer-container">
