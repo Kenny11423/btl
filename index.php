@@ -1,7 +1,7 @@
 <?php
 session_start();
 /* ====== CẤU HÌNH ====== */
-define("BASE_URL", "/btl/");   // đổi theo tên folder project
+define("BASE_URL", "/");   // đổi theo tên folder project
 
 require_once "app/controllers/AuthController.php";
 require_once "app/controllers/HomeController.php";
@@ -17,18 +17,18 @@ $action     = $_GET['action'] ?? 'index';
 switch ($controller) {
 
     case 'auth':
-        $auth = new AuthController();
+    $auth = new AuthController();
 
-        if ($action == 'login') {
-            $auth->login();
-        } elseif ($action == 'register') {
-            $auth->register();
-        } elseif ($action == 'logout') {
-            $auth->logout();
-        } else {
-            echo "Action không tồn tại";
-        }
-        break;
+    if ($action == 'login' || $action == 'index') {
+        $auth->login();
+    } elseif ($action == 'register') {
+        $auth->register();
+    } elseif ($action == 'logout') {
+        $auth->logout();
+    } else {
+        echo "Action không tồn tại";
+    }
+    break;
 
     case 'home':
         if (!isset($_SESSION["user_id"])) {

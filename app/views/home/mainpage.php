@@ -16,11 +16,11 @@ if (!isset($_SESSION["user_id"])) {
 <header class="navbar">
     <div class="logo">Placeholder</div>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">About</a>
-        <a href="#">news</a>
-        <a href="#">Contact</a>
+        <a href="index.php?controller=home">Home</a>
+        <a href="index.php?controller=products">Products</a>
+        <a href="index.php?controller=pages&action=about">About</a>
+        <a href="index.php?controller=news">News</a>
+        <a href="index.php?controller=pages&action=contact">Contact</a>
         <a href="index.php?controller=auth&action=logout" >Đăng Xuất</a>
     </nav>
 </header>
@@ -43,13 +43,13 @@ if (!isset($_SESSION["user_id"])) {
 
     <?php foreach ($featuredProducts as $product): ?>
 
-    <a href="index.php?controller=products&action=detail&id=<?= $product['product_id'] ?>" 
+    <a href="<?= BASE_URL ?>index.php?controller=products&action=detail&id=<?= $product['product_id'] ?>" 
        style="text-decoration:none; color:inherit;">
 
         <div class="card">
 
             <div class="product-image">
-                <img src="assets/Images/<?= $product['image'] ?>"
+                <img src="<?= BASE_URL ?>assets/Images/<?= $product['image'] ?>"
                      alt="<?= $product['product_name'] ?>">
             </div>
 
@@ -80,10 +80,11 @@ if (!isset($_SESSION["user_id"])) {
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Contact</a></li>
+                <a href="<?= BASE_URL ?>index.php?controller=home">Home</a>
+                <a href="<?= BASE_URL ?>index.php?controller=products">Products</a>
+                <a href="<?= BASE_URL ?>index.php?controller=pages&action=about">About</a>
+                <a href="<?= BASE_URL ?>index.php?controller=news">News</a>
+                <a href="<?= BASE_URL ?>index.php?controller=pages&action=contact">Contact</a>
             </ul>
         </div>
 

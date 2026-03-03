@@ -78,10 +78,11 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Contact</a></li>
+                <a href="<?= BASE_URL ?>index.php?controller=home">Home</a>
+                <a href="<?= BASE_URL ?>index.php?controller=products">Products</a>
+                <a href="<?= BASE_URL ?>index.php?controller=pages&action=about">About</a>
+                <a href="<?= BASE_URL ?>index.php?controller=news">News</a>
+                <a href="<?= BASE_URL ?>index.php?controller=pages&action=contact">Contact</a>
             </ul>
         </div>
 
