@@ -55,7 +55,15 @@ switch ($controller) {
             (new ProductController())->detail();
         }
         break;
+    case 'pages':
+    $page = new PageController();
 
+    if ($action == 'about') {
+        $page->about();
+    } elseif ($action == 'contact') {
+        $page->contact();
+    }
+    break;
     default:
         echo "404 Not Found";
 }
