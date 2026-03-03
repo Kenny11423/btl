@@ -27,4 +27,35 @@ class Product {
 
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    public static function getAllProducts() {
+
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $sql = "SELECT * FROM products ORDER BY product_id DESC";
+
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+public static function getProductById($id) {
+
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $id = intval($id);
+
+    $sql = "SELECT p.*, 
+                   b.brand_name, 
+                   c.category_name
+            FROM products p
+            LEFT JOIN brands b ON p.brand_id = b.brand_id
+            LEFT JOIN categories c ON p.category_id = c.category_id
+            WHERE p.product_id = $id";
+
+
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_assoc($result);
+}
 }

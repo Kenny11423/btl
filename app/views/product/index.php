@@ -1,9 +1,3 @@
-<?php
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,49 +18,38 @@ if (!isset($_SESSION["user_id"])) {
         <a href="index.php?controller=auth&action=logout" >Đăng Xuất</a>
     </nav>
 </header>
+<body>
 
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Discover the Future of Tech</h1>
-        <p>Explore our curated selection of the latest and greatest electronic gadgets.</p>
-        <button class="explore-btn">Explore Products</button>
-    </div>
-</section>
+<div class="container">
+    <h2>TRANG SẢN PHẨM</h2>
 
-<!-- FEATURED PRODUCTS -->
-<section class="products">
-    <h2>Featured Products</h2>
-    <div class="underline"></div>
+    <div class="product-grid">
 
-   <div class="product-grid">
+        <?php if (!empty($products)) : ?>
+            <?php foreach ($products as $product) : ?>
 
-    <?php foreach ($featuredProducts as $product): ?>
+                <div class="product-card">
 
-    <a href="index.php?controller=products&action=detail&id=<?= $product['product_id'] ?>" 
-       style="text-decoration:none; color:inherit;">
+                    <img src="assets/Images/<?= $product['image']; ?>" 
+                         alt="<?= $product['product_name']; ?>">
 
-        <div class="card">
+                    <h3><?= $product['product_name']; ?></h3>
 
-            <div class="product-image">
-                <img src="assets/Images/<?= $product['image'] ?>"
-                     alt="<?= $product['product_name'] ?>">
-            </div>
+                    <p class="price">
+                        <?= number_format($product['price'], 0, ',', '.'); ?> đ
+                    </p>
 
-            <h3><?= $product['product_name'] ?></h3>
-            <p><?= $product['description'] ?></p>
+                    <a href="index.php?controller=product&action=detail&id=<?= $product['product_id']; ?>" 
+                       class="btn">
+                       Xem chi tiết
+                    </a>
 
-            <span class="price">
-                <?= number_format($product['price'], 0, ',', '.') ?>đ
-            </span>
+                </div>
 
-            <button>Xem Chi Tiết</button>
-
-        </div>
-
-    </a>
-
-<?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p>Không có sản phẩm nào.</p>
+        <?php endif; ?>
 </div>
 </section>
 <footer class="footer">
