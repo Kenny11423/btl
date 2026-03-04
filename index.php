@@ -62,6 +62,8 @@ switch ($controller) {
         $page->about();
     } elseif ($action == 'contact') {
         $page->contact();
+    }elseif ($action == 'user') {
+        $page->user();
     }
     break;
     default:

@@ -17,7 +17,7 @@ class Product {
 
         $sql = "SELECT * FROM products 
                 ORDER BY product_id ASC 
-                LIMIT 4";
+                LIMIT 5";
 
         $result = mysqli_query($conn, $sql);
 

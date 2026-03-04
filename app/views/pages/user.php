@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Placeholder</title>
@@ -25,39 +24,34 @@
     </nav>
 </header>
 <body>
+<section class="user-profile">
+    <h2>Thông Tin Tài Khoản</h2>
 
-<div class="container">
-    <h2>TRANG SẢN PHẨM</h2>
+    <form method="POST" class="profile-card">
 
-    <div class="product-grid">
+        <label>Email</label>
+        <input type="text" value="<?= $user['email'] ?>" disabled>
 
-        <?php if (!empty($products)) : ?>
-            <?php foreach ($products as $product) : ?>
+        <label>Họ và tên</label>
+        <input type="text" name="fullname" 
+               value="<?= $user['fullname'] ?? '' ?>">
 
-                <div class="product-card">
+        <label>Số điện thoại</label>
+        <input type="text" name="phone" 
+               value="<?= $user['phone'] ?? '' ?>">
 
-                    <img src="assets/Images/<?= $product['image']; ?>" 
-                         alt="<?= $product['product_name']; ?>">
+        <label>Địa chỉ</label>
+        <input type="text" name="address" 
+               value="<?= $user['address'] ?? '' ?>">
 
-                    <h3><?= $product['product_name']; ?></h3>
+        <label>Vai trò</label>
+        <input type="text" value="<?= $user['role'] ?>" disabled>
 
-                    <p class="price">
-                        <?= number_format($product['price'], 0, ',', '.'); ?> đ
-                    </p>
+        <button type="submit">Cập Nhật</button>
 
-                    <a href="index.php?controller=product&action=detail&id=<?= $product['product_id']; ?>" 
-                       class="btn">
-                       Xem chi tiết
-                    </a>
-
-                </div>
-
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Không có sản phẩm nào.</p>
-        <?php endif; ?>
-</div>
+    </form>
 </section>
+</body>
 <footer class="footer">
     <div class="footer-container">
 
@@ -89,5 +83,4 @@
         © 2026 Placeholder. All rights reserved.
     </div>
 </footer>
-</body>
 </html>

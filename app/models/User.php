@@ -43,6 +43,34 @@ class User {
 
     return mysqli_stmt_execute($stmt);
 }
+ public function getUserById($id) {
+
+        $sql = "SELECT * FROM users WHERE user_id=?";
+        $stmt = mysqli_prepare($this->conn, $sql);
+
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
+ public function updateProfile($id, $fullname, $phone, $address) {
+
+        $sql = "UPDATE users 
+                SET fullname=?, phone=?, address=?
+                WHERE user_id=?";
+
+        $stmt = mysqli_prepare($this->conn, $sql);
+
+        mysqli_stmt_bind_param($stmt, "sssi",
+            $fullname,
+            $phone,
+            $address,
+            $id
+        );
+
+        return mysqli_stmt_execute($stmt);
+    }
 public function logout() {
 
     session_start();        // đảm bảo session đang mở

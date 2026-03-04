@@ -15,7 +15,13 @@
         <a href="index.php?controller=pages&action=about">About</a>
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
-        <a href="index.php?controller=auth&action=logout" >Đăng Xuất</a>
+        <button class="user-btn">👤 User ▾</button>
+    <div class="dropdown-content">
+        <a href="index.php?controller=pages&action=user">Thông Tin</a>
+        <a href="index.php?controller=pages&action=user">Giỏ hàng</a>
+        <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
+    </div>
+</div>
     </nav>
 </header>
 <body>

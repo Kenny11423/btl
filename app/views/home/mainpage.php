@@ -21,7 +21,14 @@ if (!isset($_SESSION["user_id"])) {
         <a href="index.php?controller=pages&action=about">About</a>
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
-        <a href="index.php?controller=auth&action=logout" >Đăng Xuất</a>
+        <div class="user-dropdown">
+    <button class="user-btn">👤 User ▾</button>
+    <div class="dropdown-content">
+        <a href="index.php?controller=pages&action=user">Thông Tin</a>
+        <a href="index.php?controller=pages&action=user">Giỏ hàng</a>
+        <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
+    </div>
+</div>
     </nav>
 </header>
 
@@ -30,7 +37,6 @@ if (!isset($_SESSION["user_id"])) {
     <div class="hero-content">
         <h1>Discover the Future of Tech</h1>
         <p>Explore our curated selection of the latest and greatest electronic gadgets.</p>
-        <button class="explore-btn">Explore Products</button>
     </div>
 </section>
 
