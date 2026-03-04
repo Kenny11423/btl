@@ -1,3 +1,4 @@
+<?php include "app/views/header.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,42 +27,45 @@
     </nav>
 </header>
 
-    </nav>
-</header>
+
 <body>
+<section class="news-list">
+    <h2>Tin Công Nghệ</h2>
 
-<div class="container">
-    <h2>TRANG SẢN PHẨM</h2>
+    <?php foreach ($newsList as $item): ?>
+        <div class="news-item">
 
-    <div class="product-grid">
+            <?php if (!empty($item['image'])): ?>
+                <img src="public/images/<?= $item['image']; ?>" alt="">
+            <?php endif; ?>
 
-        <?php if (!empty($products)) : ?>
-            <?php foreach ($products as $product) : ?>
-
-                <div class="product-card">
-
-                    <img src="assets/Images/<?= $product['image']; ?>" 
-                         alt="<?= $product['product_name']; ?>">
-
-                    <h3><?= $product['product_name']; ?></h3>
-
-                    <p class="price">
-                        <?= number_format($product['price'], 0, ',', '.'); ?> đ
-                    </p>
-
-                    <a href="index.php?controller=product&action=detail&id=<?= $product['product_id']; ?>" 
-                       class="btn">
-                       Xem chi tiết
+            <div class="news-content">
+                <h3>
+                    <a href="index.php?controller=news&action=detail&id=<?= $item['news_id']; ?>">
+                        <?= $item['title']; ?>
                     </a>
+                </h3>
 
-                </div>
+                <p class="news-date">
+                    <?= date("d/m/Y", strtotime($item['created_at'])); ?>
+                </p>
 
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Không có sản phẩm nào.</p>
-        <?php endif; ?>
-</div>
+                <p>
+                    <?= substr($item['content'], 0, 150); ?>...
+                </p>
+
+                <a class="read-more"
+                   href="index.php?controller=news&action=detail&id=<?= $item['news_id']; ?>">
+                   Xem thêm →
+                </a>
+            </div>
+
+        </div>
+    <?php endforeach; ?>
+
 </section>
+
+<?php include "app/views/footer.php"; ?>
 <footer class="footer">
     <div class="footer-container">
 

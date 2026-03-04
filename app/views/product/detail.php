@@ -15,7 +15,8 @@
         <a href="index.php?controller=pages&action=about">About</a>
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
-        <button class="user-btn">👤 User ▾</button>
+        <div class="user-dropdown">
+    <button class="user-btn">👤 User ▾</button>
     <div class="dropdown-content">
         <a href="index.php?controller=pages&action=user">Thông Tin</a>
         <a href="index.php?controller=pages&action=user">Giỏ hàng</a>
@@ -24,6 +25,7 @@
 </div>
     </nav>
 </header>
+
 <body>
 
 <?php if ($product): ?>
@@ -59,7 +61,7 @@
             </a>
 
             <a href="index.php?controller=products" class="btn-back">
-                ← Quay lại sản phẩm
+                ← tiếp tục mua sắm
             </a>
 
         </div>

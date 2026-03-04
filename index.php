@@ -66,6 +66,16 @@ switch ($controller) {
         $page->user();
     }
     break;
+    case 'news':
+    $news = new NewsController();
+
+    if ($action == 'detail') {
+        $news->detail();
+    } else {
+        $news->index();
+    }
+
+    break;
     default:
         echo "404 Not Found";
 }

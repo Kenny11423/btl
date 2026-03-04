@@ -1,3 +1,4 @@
+<?php include "app/views/header.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,42 +27,26 @@
     </nav>
 </header>
 
-    </nav>
-</header>
 <body>
+<section class="news-detail">
 
-<div class="container">
-    <h2>TRANG SẢN PHẨM</h2>
+    <h2><?= $news['title']; ?></h2>
 
-    <div class="product-grid">
+    <p class="date">
+        <?= date("d/m/Y", strtotime($news['created_at'])); ?>
+    </p>
 
-        <?php if (!empty($products)) : ?>
-            <?php foreach ($products as $product) : ?>
+    <?php if ($news['image']): ?>
+        <img src="public/images/<?= $news['image']; ?>" alt="">
+    <?php endif; ?>
 
-                <div class="product-card">
+    <div class="content">
+        <?= nl2br($news['content']); ?>
+    </div>
 
-                    <img src="assets/Images/<?= $product['image']; ?>" 
-                         alt="<?= $product['product_name']; ?>">
-
-                    <h3><?= $product['product_name']; ?></h3>
-
-                    <p class="price">
-                        <?= number_format($product['price'], 0, ',', '.'); ?> đ
-                    </p>
-
-                    <a href="index.php?controller=product&action=detail&id=<?= $product['product_id']; ?>" 
-                       class="btn">
-                       Xem chi tiết
-                    </a>
-
-                </div>
-
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Không có sản phẩm nào.</p>
-        <?php endif; ?>
-</div>
 </section>
+
+<?php include "app/views/footer.php"; ?>
 <footer class="footer">
     <div class="footer-container">
 
