@@ -74,7 +74,19 @@ switch ($controller) {
     } else {
         $news->index();
     }
+    break;
+    case 'cart':
+    $cart = new CartController();
 
+    if ($action == 'add') {
+        $cart->add();
+    } elseif ($action == 'remove') {
+        $cart->remove();
+    } elseif ($action == 'update') {
+        $cart->update();
+    } else {
+        $cart->index();
+    }
     break;
     default:
         echo "404 Not Found";

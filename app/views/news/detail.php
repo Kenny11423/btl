@@ -1,4 +1,3 @@
-<?php include "app/views/header.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +45,6 @@
 
 </section>
 
-<?php include "app/views/footer.php"; ?>
 <footer class="footer">
     <div class="footer-container">
 

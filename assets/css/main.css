@@ -607,3 +607,56 @@ footer {
 .read-more:hover {
     text-decoration: underline;
 }
+/* cart */
+.cart-page {
+    width: 1000px;
+    margin: 80px auto;
+}
+
+.cart-page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    background: #6c3bff;
+    color: white;
+    padding: 12px;
+}
+
+.cart-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-table input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.remove-btn {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cart-summary {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.cart-summary button {
+    padding: 10px 20px;
+    background: #6c3bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
