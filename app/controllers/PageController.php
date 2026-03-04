@@ -35,6 +35,7 @@ class PageController
         }
 
         $user = $userModel->getUserById($userId);
+        $orderHistory = $userModel->getOrderHistory($userId);
 
         require_once "app/views/pages/user.php";
     }

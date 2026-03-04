@@ -71,6 +71,19 @@ class User {
 
         return mysqli_stmt_execute($stmt);
     }
+public function getOrderHistory($userId) {
+
+    $sql = "SELECT * FROM orders 
+            WHERE user_id = ? 
+            ORDER BY created_at DESC";
+
+    $stmt = mysqli_prepare($this->conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
 public function logout() {
 
     session_start();        // đảm bảo session đang mở

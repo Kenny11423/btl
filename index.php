@@ -84,6 +84,8 @@ switch ($controller) {
         $cart->remove();
     } elseif ($action == 'update') {
         $cart->update();
+    } elseif ($action == 'checkout') {
+        $cart->checkout();
     } else {
         $cart->index();
     }

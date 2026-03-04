@@ -56,6 +56,32 @@
 
     </form>
 </section>
+<div class="order-history">
+    <h3>Lịch Sử Mua Hàng</h3>
+
+    <?php if (empty($orderHistory)): ?>
+        <p>Bạn chưa có đơn hàng nào.</p>
+    <?php else: ?>
+
+        <table>
+            <tr>
+                <th>Mã đơn</th>
+                <th>Tổng tiền</th>
+                <th>Ngày đặt</th>
+            </tr>
+
+            <?php foreach ($orderHistory as $order): ?>
+                <tr>
+                    <td>#<?= $order['order_id']; ?></td>
+                    <td><?= number_format($order['total']); ?> đ</td>
+                    <td><?= date("d/m/Y", strtotime($order['created_at'])); ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+        </table>
+
+    <?php endif; ?>
+</div>
 </body>
 <footer class="footer">
     <div class="footer-container">

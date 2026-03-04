@@ -1,4 +1,3 @@
-<?php include "app/views/header.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,17 +93,34 @@
 
             <div class="cart-summary">
                 <h3>Tổng tiền: <?= number_format($total); ?> đ</h3>
+
+                <!-- CHỌN PHƯƠNG THỨC THANH TOÁN -->
+                <div style="margin:15px 0;">
+                    <label>Phương thức thanh toán:</label>
+                    <select name="payment_id">
+                        <option value="">-- Chọn phương thức --</option>
+                        <?php foreach ($paymentMethods as $method): ?>
+                            <option value="<?= $method['payment_id']; ?>">
+                                <?= $method['method_name']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
                 <button type="submit">Cập nhật giỏ hàng</button>
+
+                <button type="submit" name="checkout">
+                    Thanh toán
+                </button>
+
             </div>
 
         </form>
 
     <?php endif; ?>
-
 </section>
 
 
-<?php include "app/views/footer.php"; ?>
 </body>
 <footer class="footer">
     <div class="footer-container">
