@@ -25,7 +25,7 @@ if (!isset($_SESSION["user_id"])) {
     <button class="user-btn">👤 User ▾</button>
     <div class="dropdown-content">
         <a href="index.php?controller=pages&action=user">Thông Tin</a>
-        <a href="index.php?controller=pages&action=user">Giỏ hàng</a>
+        <a href="index.php?controller=cart">Giỏ hàng</a>
         <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
     </div>
 </div>

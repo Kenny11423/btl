@@ -19,7 +19,7 @@
     <button class="user-btn">👤 User ▾</button>
     <div class="dropdown-content">
         <a href="index.php?controller=pages&action=user">Thông Tin</a>
-        <a href="index.php?controller=pages&action=user">Giỏ hàng</a>
+        <a href="index.php?controller=cart">Giỏ hàng</a>
         <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
     </div>
 </div>
@@ -97,7 +97,7 @@
                 <!-- CHỌN PHƯƠNG THỨC THANH TOÁN -->
                 <div style="margin:15px 0;">
                     <label>Phương thức thanh toán:</label>
-                    <select name="payment_id">
+                    <select name="payment_id"2>
                         <option value="">-- Chọn phương thức --</option>
                         <?php foreach ($paymentMethods as $method): ?>
                             <option value="<?= $method['payment_id']; ?>">
