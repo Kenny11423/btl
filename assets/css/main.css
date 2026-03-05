@@ -685,3 +685,57 @@ footer {
     border-radius: 6px;
     cursor: pointer;
 }
+/* ===== Bảng Admin ===== */
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.admin-table th {
+    background: #333;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.admin-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.admin-table tr:hover {
+    background: #f1f1f1;
+}
+
+/* select role */
+.admin-table select {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* button */
+.admin-table button {
+    padding: 6px 10px;
+    border: none;
+    background: #2ecc71;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-table button:hover {
+    background: #27ae60;
+}
+
+/* title */
+.admin-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}

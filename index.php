@@ -90,6 +90,19 @@ switch ($controller) {
         $cart->index();
     }
     break;
+    case "admin":
+
+    require_once "app/controllers/AdminController.php";
+
+    $controller = new AdminController();
+
+    if ($action == "changeRole") {
+        $controller->changeRole();
+    } else {
+        $controller->users();
+    }
+
+break;
     default:
         echo "404 Not Found";
 }

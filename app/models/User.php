@@ -93,4 +93,28 @@ public function logout() {
     header("Location: index.php?controller=auth&action=login");
     exit();
 }
+public function getAllUsers()
+{
+    $sql = "SELECT * FROM users ORDER BY user_id DESC";
+
+    $result = mysqli_query($this->conn, $sql);
+
+    $users = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users[] = $row;
+    }
+
+    return $users;
+}
+public function updateRole($userId, $role) {
+
+    $sql = "UPDATE users SET role=? WHERE user_id=?";
+
+    $stmt = mysqli_prepare($this->conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "si", $role, $userId);
+
+    return mysqli_stmt_execute($stmt);
+}
 }

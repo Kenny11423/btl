@@ -21,7 +21,6 @@
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                     <a href="index.php?controller=admin&action=users">Quản lý</a> 
                 <?php endif; ?>
-        <a href="index.php?controller=pages&action=user">Thông Tin</a>
         <a href="index.php?controller=cart">Giỏ hàng</a>
         <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
     </div>
@@ -29,43 +28,59 @@
     </nav>
 </header>
 
+    </nav>
 </header>
 <body>
+<section class="admin-users">
 
-<div class="container">
-    <h2>Liên hệ với chúng tôi</h2>
+<h2 class="admin-title">Quản Lý Người Dùng</h2>
 
-    <div class="contact-page">
+<table class="admin-table">
 
-    <div class="contact-container">
+<tr>
+    <th>ID</th>
+    <th>Tên</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Đổi Role</th>
+</tr>
 
-        <h2 class="page-title">Liên Hệ</h2>
-        <div class="title-underline"></div>
+<?php foreach ($users as $user): ?>
 
-        <div class="contact-wrapper">
+<tr>
 
-            <div class="contact-info">
-                <h3>Thông tin liên hệ</h3>
-                <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
-                <p><strong>Email:</strong> support@placeholder.com</p>
-                <p><strong>Điện thoại:</strong> 0123 456 789</p>
-            </div>
+<td><?= $user['user_id'] ?></td>
+<td><?= $user['fullname'] ?></td>
+<td><?= $user['email'] ?></td>
+<td><?= $user['role'] ?></td>
 
-            <div class="contact-form">
-                <form method="post">
-                    <input type="text" name="name" placeholder="Họ và tên" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" rows="5" placeholder="Nội dung..." required></textarea>
-                    <button type="submit">Gửi Tin Nhắn</button>
-                </form>
-            </div>
+<td>
 
-        </div>
+<form method="POST" action="index.php?controller=admin&action=changeRole">
 
-    </div>
+<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
 
-</div>
-</div>
+<select name="role">
+
+<option value="user" <?= $user['role']=='user'?'selected':'' ?>>User</option>
+<option value="admin" <?= $user['role']=='admin'?'selected':'' ?>>Admin</option>
+
+</select>
+
+<button type="submit">Cập nhật</button>
+
+</form>
+
+</td>
+
+</tr>
+
+<?php endforeach; ?>
+
+</table>
+
+</section>
+
 </div>
 </section>
 <footer class="footer">

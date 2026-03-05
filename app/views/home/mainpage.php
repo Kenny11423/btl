@@ -24,6 +24,9 @@ if (!isset($_SESSION["user_id"])) {
         <div class="user-dropdown">
     <button class="user-btn">👤 User ▾</button>
     <div class="dropdown-content">
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+                    <a href="index.php?controller=admin&action=users">Quản lý</a> 
+                <?php endif; ?>
         <a href="index.php?controller=pages&action=user">Thông Tin</a>
         <a href="index.php?controller=cart">Giỏ hàng</a>
         <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
