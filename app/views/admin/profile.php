@@ -21,6 +21,7 @@
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                     <a href="index.php?controller=admin&action=users">Quản lý</a> 
                 <?php endif; ?>
+        <a href="index.php?controller=pages&action=user">Thông Tin</a>
         <a href="index.php?controller=cart">Giỏ hàng</a>
         <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
     </div>
