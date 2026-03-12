@@ -35,8 +35,8 @@
    - Mở `config/database.php` và chỉnh:
      ```php
      private $host = "localhost";
-     private $username = "admin";
-     private $password = "123456";
+     private $username = "rooy";
+     private $password = "";
      private $dbname = "tech-shop";
      ```
    - Đổi `username`, `password`, `dbname` theo máy của bạn.
@@ -49,6 +49,29 @@
      php -S localhost:8000
      ```
      Sau đó vào `http://localhost:8000/index.php`.
+
+#### 4.1. Chạy web và share ra ngoài bằng ngrok
+Nếu bạn muốn demo website cho người khác xem qua Internet (trên máy thật hoặc trong LAN), có thể dùng **ngrok**:
+
+1. **Cài ngrok** (nếu chưa có):
+   - Tải từ trang chủ `https://ngrok.com` và làm theo hướng dẫn cài đặt cho Linux.
+2. **Chạy PHP built-in server cục bộ** (ví dụ cổng 8000):
+   ```bash
+   cd /path/to/project
+   php -S localhost:8000
+   ```
+3. **Mở một terminal khác và chạy ngrok**:
+   ```bash
+   ngrok http 8000
+   ```
+4. Ngrok sẽ tạo một **URL công khai** dạng:
+   - `https://xxxx-xx-xx-xx.ngrok-free.app`
+5. Gửi URL đó cho người khác, họ có thể truy cập trực tiếp vào:
+   - `https://xxxx-xx-xx-xx.ngrok-free.app/index.php`
+
+Lưu ý:
+- Khi dùng ngrok, **terminal chạy PHP server và terminal chạy ngrok phải luôn mở**.
+- Nếu bạn đổi cổng PHP server (ví dụ 8080) thì lệnh ngrok cũng phải đổi theo: `ngrok http 8080`.
 
 ### 5. Tài khoản mẫu
 - **Admin**
@@ -96,6 +119,11 @@
   - Phân trang danh sách sản phẩm/tin tức.
   - Validate dữ liệu nâng cao, CSRF token, v.v.
 - Nếu đưa lên môi trường thật, cần:
+  - Ẩn/thay đổi tài khoản admin mặc định.
+  - Cấu hình lại thông tin DB, domain, HTTPS.
+  - Bổ sung validate & bảo mật (filter input, CSRF, XSS, quyền hạn chi tiết hơn).
+
+
   - Ẩn/thay đổi tài khoản admin mặc định.
   - Cấu hình lại thông tin DB, domain, HTTPS.
   - Bổ sung validate & bảo mật (filter input, CSRF, XSS, quyền hạn chi tiết hơn).
