@@ -10,15 +10,6 @@ class ProductController {
 
         // Gọi view
         require_once "app/views/product/index.php";
-          if (!isset($_GET['id'])) {
-        echo "Không tìm thấy sản phẩm";
-        return;
-    }
-
-    $id = intval($_GET['id']);
-    $product = Product::getProductById($id);
-
-    require_once "app/views/product/detail.php";
     }
 
 

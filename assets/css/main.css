@@ -739,3 +739,136 @@ footer {
     font-size: 24px;
     margin-bottom: 10px;
 }
+
+/* ===== Admin Dashboard ===== */
+.admin-dashboard {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.admin-hero {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+}
+
+.admin-hero h2 {
+    margin: 0 0 6px 0;
+}
+
+.admin-hero p {
+    margin: 0;
+    color: #555;
+}
+
+.admin-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.admin-card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.admin-card-title {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.admin-card-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #6d28d9;
+    margin-bottom: 10px;
+}
+
+.admin-card-link {
+    text-decoration: none;
+    color: #7c3aed;
+    font-weight: bold;
+}
+
+.admin-actions {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.admin-actions h3 {
+    margin: 0 0 12px 0;
+}
+
+.admin-action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.admin-action {
+    display: block;
+    padding: 12px 14px;
+    background: #f5f3ff;
+    border: 1px solid #e9d5ff;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #312e81;
+    font-weight: bold;
+}
+
+.admin-action:hover {
+    background: #ede9fe;
+}
+
+/* ===== Admin forms (add product / add news) ===== */
+.admin-actions form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+}
+
+.admin-actions label {
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.admin-actions input[type="text"],
+.admin-actions input[type="number"],
+.admin-actions textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d4d4d8;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.admin-actions textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.admin-actions button[type="submit"] {
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: #6d28d9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.admin-actions button[type="submit"]:hover {
+    background: #5b21b6;
+}

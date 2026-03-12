@@ -11,7 +11,7 @@ require_once "app/controllers/NewsController.php";
 require_once "app/controllers/PageController.php";
 
 /* ====== ROUTING ====== */
-$controller = $_GET['controller'] ?? (isset($_SESSION["user_id"]) ? 'home' : 'auth');
+$controller = $_GET['controller'] ?? 'home';
 $action     = $_GET['action'] ?? 'index';
 
 switch ($controller) {
@@ -31,11 +31,6 @@ switch ($controller) {
     break;
 
     case 'home':
-        if (!isset($_SESSION["user_id"])) {
-            header("Location: index.php?controller=auth&action=login");
-            exit();
-        }
-
         $home = new HomeController();
         $home->index();
         break;
@@ -96,7 +91,13 @@ switch ($controller) {
 
     $controller = new AdminController();
 
-    if ($action == "changeRole") {
+    if ($action == "dashboard") {
+        $controller->dashboard();
+    } elseif ($action == "addProduct") {
+        $controller->addProduct();
+    } elseif ($action == "addNews") {
+        $controller->addNews();
+    } elseif ($action == "changeRole") {
         $controller->changeRole();
     } else {
         $controller->users();

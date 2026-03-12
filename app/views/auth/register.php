@@ -18,7 +18,8 @@
     <h2>Create Account</h2>
     <p class="subtitle">Register to get started</p>
 
-    <form method="POST">
+    <?php $return = isset($_GET['return']) ? htmlspecialchars($_GET['return']) : ''; ?>
+    <form method="POST" action="index.php?controller=auth&action=register<?= $return ? '&return=' . $return : '' ?>">
         <input type="text" name="fullname" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
@@ -29,7 +30,7 @@
 
     <p class="register-text">
         Already have an account?
-        <a href="index.php?controller=auth&action=login">Sign in</a>
+        <a href="index.php?controller=auth&action=login<?= $return ? '&return=' . $return : '' ?>">Sign in</a>
     </p>
 </div>
 

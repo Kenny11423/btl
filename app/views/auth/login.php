@@ -14,7 +14,8 @@
     <h2>Sign In</h2>
     <p class="subtitle">Enter your credentials to continue</p>
 
-    <form method="POST">
+    <?php $return = isset($_GET['return']) ? htmlspecialchars($_GET['return']) : ''; ?>
+    <form method="POST" action="index.php?controller=auth&action=login<?= $return ? '&return=' . $return : '' ?>">
         <input type="email" name="email" placeholder="Email" required>
 
         <div class="password-field">
@@ -32,7 +33,7 @@
 
     <p class="register-text">
         Don't have an account?
-        <a href="index.php?controller=auth&action=register">Create one</a>
+        <a href="index.php?controller=auth&action=register<?= $return ? '&return=' . $return : '' ?>">Create one</a>
     </p>
 </div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Placeholder</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
@@ -15,13 +15,12 @@
         <a href="index.php?controller=pages&action=about">About</a>
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
+
         <?php if (isset($_SESSION['user_id'])): ?>
             <div class="user-dropdown">
                 <button class="user-btn">👤 <?= htmlspecialchars($_SESSION['fullname'] ?? 'User') ?> ▾</button>
                 <div class="dropdown-content">
-                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                        <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
-                    <?php endif; ?>
+                    <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
                     <a href="index.php?controller=pages&action=user">Thông Tin</a>
                     <a href="index.php?controller=cart">Giỏ hàng</a>
                     <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
@@ -34,49 +33,45 @@
     </nav>
 </header>
 
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Discover the Future of Tech</h1>
-        <p>Explore our curated selection of the latest and greatest electronic gadgets.</p>
-    </div>
-</section>
+<main class="admin-dashboard">
+    <section class="admin-hero">
+        <h2>Admin Dashboard</h2>
+        <p>Chào <?= htmlspecialchars($_SESSION['fullname'] ?? 'Admin') ?> — quản lý nhanh hệ thống.</p>
+    </section>
 
-<!-- FEATURED PRODUCTS -->
-<section class="products">
-    <h2>Featured Products</h2>
-    <div class="underline"></div>
-
-   <div class="product-grid">
-
-    <?php foreach ($featuredProducts as $product): ?>
-
-    <a href="<?= BASE_URL ?>index.php?controller=products&action=detail&id=<?= $product['product_id'] ?>" 
-       style="text-decoration:none; color:inherit;">
-
-        <div class="card">
-
-            <div class="product-image">
-                <img src="<?= BASE_URL ?>assets/Images/<?= $product['image'] ?>"
-                     alt="<?= $product['product_name'] ?>">
-            </div>
-
-            <h3><?= $product['product_name'] ?></h3>
-            <p><?= $product['description'] ?></p>
-
-            <span class="price">
-                <?= number_format($product['price'], 0, ',', '.') ?>đ
-            </span>
-
-            <button>Xem Chi Tiết</button>
-
+    <section class="admin-cards">
+        <div class="admin-card">
+            <div class="admin-card-title">Tổng users</div>
+            <div class="admin-card-value"><?= (int)($totalUsers ?? 0) ?></div>
+            <a class="admin-card-link" href="index.php?controller=admin&action=users">Xem danh sách →</a>
         </div>
 
-    </a>
+        <div class="admin-card">
+            <div class="admin-card-title">Admins</div>
+            <div class="admin-card-value"><?= (int)($totalAdmins ?? 0) ?></div>
+            <a class="admin-card-link" href="index.php?controller=admin&action=users">Quản lý role →</a>
+        </div>
 
-<?php endforeach; ?>
-</div>
-</section>
+        <div class="admin-card">
+            <div class="admin-card-title">Customers</div>
+            <div class="admin-card-value"><?= (int)($totalCustomers ?? 0) ?></div>
+            <a class="admin-card-link" href="index.php?controller=admin&action=users">Xem customers →</a>
+        </div>
+    </section>
+
+    <section class="admin-actions">
+        <h3>Thao tác nhanh</h3>
+        <div class="admin-action-grid">
+            <a class="admin-action" href="index.php?controller=admin&action=users">Quản lý người dùng</a>
+            <a class="admin-action" href="index.php?controller=admin&action=addProduct">Thêm sản phẩm</a>
+            <a class="admin-action" href="index.php?controller=admin&action=addNews">Thêm tin tức</a>
+            <a class="admin-action" href="index.php?controller=products">Xem sản phẩm</a>
+            <a class="admin-action" href="index.php?controller=news">Xem tin tức</a>
+            <a class="admin-action" href="index.php?controller=home">Về trang chủ</a>
+        </div>
+    </section>
+</main>
+
 <footer class="footer">
     <div class="footer-container">
 
@@ -108,5 +103,7 @@
         © 2026 Placeholder. All rights reserved.
     </div>
 </footer>
+
 </body>
 </html>
+

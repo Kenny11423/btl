@@ -18,7 +18,7 @@
     <button class="user-btn">👤 User ▾</button>
     <div class="dropdown-content">
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                    <a href="index.php?controller=admin&action=users">Quản lý</a> 
+                    <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
                <?php else: ?>
                     <a href="index.php?controller=pages&action=user">Thông Tin</a>
                 <?php endif; ?>

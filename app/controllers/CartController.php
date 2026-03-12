@@ -5,8 +5,16 @@ require_once __DIR__ . "/../models/Product.php";
 class CartController {
 
     public function add() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        session_start();
+        // Guest phải đăng nhập trước khi thêm vào giỏ
+        if (!isset($_SESSION['user_id'])) {
+            $returnUrl = urlencode($_SERVER['REQUEST_URI'] ?? 'index.php?controller=products');
+            header("Location: index.php?controller=auth&action=login&return={$returnUrl}");
+            exit();
+        }
 
         if (!isset($_GET['id'])) {
             header("Location: index.php");
@@ -42,7 +50,9 @@ class CartController {
     }
 
     public function index() {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
     require_once __DIR__ . "/../models/Order.php";
 
@@ -53,6 +63,9 @@ class CartController {
     }
 
     public function remove() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         $id = intval($_GET['id']);
         unset($_SESSION['cart'][$id]);
@@ -62,7 +75,9 @@ class CartController {
 
     public function update() {
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if (isset($_POST['checkout'])) {
         $this->checkout();
@@ -93,10 +108,13 @@ class CartController {
 
     public function checkout() {
 
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?controller=auth&action=login");
+            $returnUrl = urlencode($_SERVER['REQUEST_URI'] ?? 'index.php?controller=cart');
+            header("Location: index.php?controller=auth&action=login&return={$returnUrl}");
             exit();
         }
 

@@ -30,4 +30,15 @@ class News {
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_assoc($result);
     }
+
+    public function createNews($title, $content, $image) {
+
+        $sql = "INSERT INTO news (title, content, image)
+                VALUES (?, ?, ?)";
+
+        $stmt = mysqli_prepare($this->conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sss", $title, $content, $image);
+
+        return mysqli_stmt_execute($stmt);
+    }
 }

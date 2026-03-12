@@ -15,17 +15,22 @@
         <a href="index.php?controller=pages&action=about">About</a>
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
-        <div class="user-dropdown">
-    <button class="user-btn">👤 User ▾</button>
-    <div class="dropdown-content">
-        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                    <a href="index.php?controller=admin&action=users">Quản lý</a> 
-                <?php endif; ?>
-        <a href="index.php?controller=pages&action=user">Thông Tin</a>
-        <a href="index.php?controller=cart">Giỏ hàng</a>
-        <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
-    </div>
-</div>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <div class="user-dropdown">
+                <button class="user-btn">👤 <?= htmlspecialchars($_SESSION['fullname'] ?? 'User') ?> ▾</button>
+                <div class="dropdown-content">
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+                        <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
+                    <?php endif; ?>
+                    <a href="index.php?controller=pages&action=user">Thông Tin</a>
+                    <a href="index.php?controller=cart">Giỏ hàng</a>
+                    <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
+                </div>
+            </div>
+        <?php else: ?>
+            <a href="index.php?controller=auth&action=login" class="btn">Đăng nhập</a>
+            <a href="index.php?controller=auth&action=register" class="btn">Đăng ký</a>
+        <?php endif; ?>
     </nav>
 </header>
 
@@ -66,7 +71,7 @@
 
                         <td>
                             <?php if (!empty($item['image'])): ?>
-                                <img src="public/images/<?= $item['image']; ?>" width="60">
+                                <img src="assets/Images/<?= $item['image']; ?>" width="60">
                             <?php endif; ?>
                         </td>
 
@@ -100,7 +105,7 @@
                 <!-- CHỌN PHƯƠNG THỨC THANH TOÁN -->
                 <div style="margin:15px 0;">
                     <label>Phương thức thanh toán:</label>
-                    <select name="payment_id"2>
+                    <select name="payment_id">
                         <option value="">-- Chọn phương thức --</option>
                         <?php foreach ($paymentMethods as $method): ?>
                             <option value="<?= $method['payment_id']; ?>">

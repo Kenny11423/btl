@@ -22,7 +22,12 @@ class AuthController {
             $_SESSION["role"] = $user["role"];
             $_SESSION["fullname"] = $user["fullname"];
 
-            header("Location: index.php?controller=home");
+            $return = $_GET['return'] ?? '';
+            if (!empty($return)) {
+                header("Location: " . $return);
+            } else {
+                header("Location: index.php?controller=home");
+            }
             exit();
 
         } else {

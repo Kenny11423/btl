@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Placeholder</title>
+    <title>Thêm tin tức</title>
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="navbar">
     <div class="logo">Placeholder</div>
     <nav>
@@ -16,74 +15,45 @@
         <a href="index.php?controller=news">News</a>
         <a href="index.php?controller=pages&action=contact">Contact</a>
         <div class="user-dropdown">
-    <button class="user-btn">👤 User ▾</button>
-    <div class="dropdown-content">
-        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                    <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
-                <?php endif; ?>
-        <a href="index.php?controller=pages&action=user">Thông Tin</a>
-        <a href="index.php?controller=cart">Giỏ hàng</a>
-        <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
-    </div>
-</div>
+            <button class="user-btn">👤 Admin ▾</button>
+            <div class="dropdown-content">
+                <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
+                <a href="index.php?controller=admin&action=users">Danh sách users</a>
+                <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
+            </div>
+        </div>
     </nav>
 </header>
 
-    </nav>
-</header>
-<body>
-<section class="admin-users">
+<main class="admin-dashboard">
+    <section class="admin-hero">
+        <h2>Thêm tin tức mới</h2>
+        <p>Điền nội dung bài viết công nghệ cho mục News.</p>
+    </section>
 
-<h2 class="admin-title">Danh sách người dùng</h2>
+    <section class="admin-actions">
+        <?php if (!empty($error)): ?>
+            <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+        <?php if (!empty($success)): ?>
+            <p style="color:green;"><?= htmlspecialchars($success) ?></p>
+        <?php endif; ?>
 
-<table class="admin-table">
+        <form method="post">
+            <label>Tiêu đề</label>
+            <input type="text" name="title" required>
 
-<tr>
-    <th>ID</th>
-    <th>Tên</th>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Đổi Role</th>
-</tr>
+            <label>Ảnh (tên file trong assets/Images, có thể để trống)</label>
+            <input type="text" name="image" placeholder="vd: ai.jpg">
 
-<?php foreach ($users as $user): ?>
+            <label>Nội dung</label>
+            <textarea name="content" rows="8" required></textarea>
 
-<tr>
+            <button type="submit">Lưu tin tức</button>
+        </form>
+    </section>
+</main>
 
-<td><?= $user['user_id'] ?></td>
-<td><?= $user['fullname'] ?></td>
-<td><?= $user['email'] ?></td>
-<td><?= $user['role'] ?></td>
-
-<td>
-
-<form method="POST" action="index.php?controller=admin&action=changeRole">
-
-<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-
-<select name="role">
-
-<option value="user" <?= $user['role']=='user'?'selected':'' ?>>User</option>
-<option value="admin" <?= $user['role']=='admin'?'selected':'' ?>>Admin</option>
-
-</select>
-
-<button type="submit">Cập nhật</button>
-
-</form>
-
-</td>
-
-</tr>
-
-<?php endforeach; ?>
-
-</table>
-
-</section>
-
-</div>
-</section>
 <footer class="footer">
     <div class="footer-container">
 
@@ -115,5 +85,7 @@
         © 2026 Placeholder. All rights reserved.
     </div>
 </footer>
+
 </body>
 </html>
+

@@ -58,4 +58,28 @@ public static function getProductById($id) {
 
     return mysqli_fetch_assoc($result);
 }
+
+public static function createProduct($name, $categoryId, $brandId, $price, $stock, $description, $image) {
+
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $sql = "INSERT INTO products (product_name, category_id, brand_id, price, stock, description, image)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param(
+        $stmt,
+        "siidiss",
+        $name,
+        $categoryId,
+        $brandId,
+        $price,
+        $stock,
+        $description,
+        $image
+    );
+
+    return mysqli_stmt_execute($stmt);
+}
 }
