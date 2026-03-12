@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thêm tin tức</title>
+    <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
@@ -18,7 +18,6 @@
             <button class="user-btn">👤 Admin ▾</button>
             <div class="dropdown-content">
                 <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
-                <a href="index.php?controller=admin&action=users">Danh sách users</a>
                 <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
             </div>
         </div>
@@ -27,44 +26,49 @@
 
 <main class="admin-dashboard">
     <section class="admin-hero">
-        <h2>Thêm tin tức mới</h2>
-        <p>Điền nội dung bài viết công nghệ cho mục News.</p>
+        <h2>Quản lý sản phẩm</h2>
+        <p>Danh sách toàn bộ sản phẩm trong hệ thống.</p>
+        <a class="admin-action" href="index.php?controller=admin&action=addProduct">+ Thêm sản phẩm</a>
     </section>
 
-    <section class="admin-actions">
-        <?php if (!empty($error)): ?>
-            <p style="color:red;"><?= htmlspecialchars($error) ?></p>
-        <?php endif; ?>
-        <?php if (!empty($success)): ?>
-            <p style="color:green;"><?= htmlspecialchars($success) ?></p>
-        <?php endif; ?>
-
-        <form method="post" enctype="multipart/form-data">
-            <label>Tiêu đề</label>
-            <input type="text" name="title" required>
-
-            <label>Ảnh minh họa (tùy chọn)</label>
-            <input type="file" name="image_file" accept="image/*">
-
-            <label>Hoặc tên file/URL ảnh (tùy chọn)</label>
-            <input type="text" name="image" placeholder="vd: ai.jpg hoặc https://.../ai.jpg">
-
-            <label>Nội dung</label>
-            <textarea name="content" rows="8" required></textarea>
-
-            <button type="submit">Lưu tin tức</button>
-        </form>
+    <section class="admin-users">
+        <table class="admin-table">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Tồn kho</th>
+                <th>Ảnh</th>
+                <th>Thao tác</th>
+            </tr>
+            <?php foreach ($products as $p): ?>
+                <tr>
+                    <td><?= $p['product_id']; ?></td>
+                    <td><?= htmlspecialchars($p['product_name']); ?></td>
+                    <td><?= number_format($p['price'], 0, ',', '.'); ?> đ</td>
+                    <td><?= (int)$p['stock']; ?></td>
+                    <td>
+                        <?php if (!empty($p['image'])): ?>
+                            <img src="assets/Images/<?= $p['image']; ?>" width="60">
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a class="admin-action" href="index.php?controller=admin&action=editProduct&id=<?= $p['product_id']; ?>">Sửa</a>
+                        <a class="admin-action" href="index.php?controller=admin&action=deleteProduct&id=<?= $p['product_id']; ?>"
+                           onclick="return confirm('Xóa sản phẩm này?');">Xóa</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </section>
 </main>
 
 <footer class="footer">
     <div class="footer-container">
-
         <div class="footer-col">
             <h3>Placeholder</h3>
             <p>Leading the future of innovative technology and smart devices.</p>
         </div>
-
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
@@ -75,15 +79,12 @@
                 <a href="<?= BASE_URL ?>index.php?controller=pages&action=contact">Contact</a>
             </ul>
         </div>
-
         <div class="footer-col">
             <h4>Contact</h4>
             <p>Email: support@placeholder.com</p>
             <p>Phone: +1 234 567 890</p>
         </div>
-
     </div>
-
     <div class="footer-bottom">
         © 2026 Placeholder. All rights reserved.
     </div>

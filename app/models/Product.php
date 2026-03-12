@@ -82,4 +82,48 @@ public static function createProduct($name, $categoryId, $brandId, $price, $stoc
 
     return mysqli_stmt_execute($stmt);
 }
+
+public static function updateProduct($id, $name, $categoryId, $brandId, $price, $stock, $description, $image) {
+
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $sql = "UPDATE products 
+            SET product_name = ?, 
+                category_id  = ?, 
+                brand_id     = ?, 
+                price        = ?, 
+                stock        = ?, 
+                description  = ?, 
+                image        = ?
+            WHERE product_id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param(
+        $stmt,
+        "siidissi",
+        $name,
+        $categoryId,
+        $brandId,
+        $price,
+        $stock,
+        $description,
+        $image,
+        $id
+    );
+
+    return mysqli_stmt_execute($stmt);
+}
+
+public static function deleteProduct($id) {
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $id = (int)$id;
+    $sql = "DELETE FROM products WHERE product_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    return mysqli_stmt_execute($stmt);
+}
 }

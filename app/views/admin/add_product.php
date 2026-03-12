@@ -39,15 +39,33 @@
             <p style="color:green;"><?= htmlspecialchars($success) ?></p>
         <?php endif; ?>
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <label>Tên sản phẩm</label>
             <input type="text" name="product_name" required>
 
-            <label>Category ID (xem trong bảng categories)</label>
-            <input type="number" name="category_id" min="0">
+            <label>Danh mục (Category)</label>
+            <select name="category_id">
+                <option value="0">-- Chọn danh mục --</option>
+                <?php if (!empty($categories)): ?>
+                    <?php foreach ($categories as $c): ?>
+                        <option value="<?= $c['category_id'] ?>">
+                            <?= htmlspecialchars($c['category_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
 
-            <label>Brand ID (xem trong bảng brands)</label>
-            <input type="number" name="brand_id" min="0">
+            <label>Thương hiệu (Brand)</label>
+            <select name="brand_id">
+                <option value="0">-- Chọn thương hiệu --</option>
+                <?php if (!empty($brands)): ?>
+                    <?php foreach ($brands as $b): ?>
+                        <option value="<?= $b['brand_id'] ?>">
+                            <?= htmlspecialchars($b['brand_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
 
             <label>Giá (VNĐ)</label>
             <input type="number" step="0.01" name="price" required>
@@ -58,8 +76,11 @@
             <label>Mô tả</label>
             <textarea name="description" rows="4"></textarea>
 
-            <label>Tên file ảnh (trong assets/Images)</label>
-            <input type="text" name="image" placeholder="vd: phone_xpro.jpg">
+            <label>Ảnh sản phẩm</label>
+            <input type="file" name="image_file" accept="image/*">
+
+            <label>Hoặc nhập tên file/URL ảnh (tùy chọn)</label>
+            <input type="text" name="image" placeholder="vd: phone_xpro.jpg hoặc https://.../image.jpg">
 
             <button type="submit">Lưu sản phẩm</button>
         </form>

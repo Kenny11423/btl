@@ -95,8 +95,20 @@ switch ($controller) {
         $controller->dashboard();
     } elseif ($action == "addProduct") {
         $controller->addProduct();
+    } elseif ($action == "manageProducts") {
+        $controller->manageProducts();
+    } elseif ($action == "editProduct") {
+        $controller->editProduct();
+    } elseif ($action == "deleteProduct") {
+        $controller->deleteProduct();
     } elseif ($action == "addNews") {
         $controller->addNews();
+    } elseif ($action == "manageNews") {
+        $controller->manageNews();
+    } elseif ($action == "editNews") {
+        $controller->editNews();
+    } elseif ($action == "deleteNews") {
+        $controller->deleteNews();
     } elseif ($action == "changeRole") {
         $controller->changeRole();
     } else {

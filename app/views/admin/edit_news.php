@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thêm tin tức</title>
+    <title>Sửa tin tức</title>
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
@@ -18,7 +18,6 @@
             <button class="user-btn">👤 Admin ▾</button>
             <div class="dropdown-content">
                 <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
-                <a href="index.php?controller=admin&action=users">Danh sách users</a>
                 <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
             </div>
         </div>
@@ -27,8 +26,8 @@
 
 <main class="admin-dashboard">
     <section class="admin-hero">
-        <h2>Thêm tin tức mới</h2>
-        <p>Điền nội dung bài viết công nghệ cho mục News.</p>
+        <h2>Sửa tin tức #<?= $news['news_id']; ?></h2>
+        <p>Cập nhật nội dung bài viết.</p>
     </section>
 
     <section class="admin-actions">
@@ -41,30 +40,33 @@
 
         <form method="post" enctype="multipart/form-data">
             <label>Tiêu đề</label>
-            <input type="text" name="title" required>
+            <input type="text" name="title" required value="<?= htmlspecialchars($news['title']); ?>">
 
-            <label>Ảnh minh họa (tùy chọn)</label>
+            <?php if (!empty($news['image'])): ?>
+                <p>Ảnh hiện tại:</p>
+                <img src="assets/Images/<?= $news['image']; ?>" width="100">
+            <?php endif; ?>
+
+            <label>Ảnh mới (nếu muốn thay)</label>
             <input type="file" name="image_file" accept="image/*">
 
-            <label>Hoặc tên file/URL ảnh (tùy chọn)</label>
-            <input type="text" name="image" placeholder="vd: ai.jpg hoặc https://.../ai.jpg">
+            <label>Hoặc tên file/URL ảnh mới (tùy chọn)</label>
+            <input type="text" name="image" value="">
 
             <label>Nội dung</label>
-            <textarea name="content" rows="8" required></textarea>
+            <textarea name="content" rows="8" required><?= htmlspecialchars($news['content']); ?></textarea>
 
-            <button type="submit">Lưu tin tức</button>
+            <button type="submit">Lưu thay đổi</button>
         </form>
     </section>
 </main>
 
 <footer class="footer">
     <div class="footer-container">
-
         <div class="footer-col">
             <h3>Placeholder</h3>
             <p>Leading the future of innovative technology and smart devices.</p>
         </div>
-
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
@@ -75,15 +77,12 @@
                 <a href="<?= BASE_URL ?>index.php?controller=pages&action=contact">Contact</a>
             </ul>
         </div>
-
         <div class="footer-col">
             <h4>Contact</h4>
             <p>Email: support@placeholder.com</p>
             <p>Phone: +1 234 567 890</p>
         </div>
-
     </div>
-
     <div class="footer-bottom">
         © 2026 Placeholder. All rights reserved.
     </div>

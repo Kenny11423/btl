@@ -41,4 +41,23 @@ class News {
 
         return mysqli_stmt_execute($stmt);
     }
+
+    public function updateNews($id, $title, $content, $image) {
+
+        $sql = "UPDATE news 
+                SET title = ?, content = ?, image = ?
+                WHERE news_id = ?";
+
+        $stmt = mysqli_prepare($this->conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $image, $id);
+
+        return mysqli_stmt_execute($stmt);
+    }
+
+    public function deleteNews($id) {
+        $sql = "DELETE FROM news WHERE news_id = ?";
+        $stmt = mysqli_prepare($this->conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        return mysqli_stmt_execute($stmt);
+    }
 }
