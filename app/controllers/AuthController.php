@@ -77,7 +77,7 @@ public function logout() {
     session_unset();          // xóa biến session
     session_destroy();        // hủy session
 
-    header("Location: index.php?controller=auth&action=login");
+    header("Location: index.php?controller=home");
     exit();
 }
 }
