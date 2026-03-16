@@ -7,6 +7,6 @@ class HomeController {
         // Lấy 4/5 sản phẩm đầu tiên
         $featuredProducts = Product::getFeaturedProducts();
 
-        require_once __DIR__ . '/../views/home/mainpage.php';
+    require_once __DIR__ . '/../views/home/mainpage.php';
 }
 }

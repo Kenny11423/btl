@@ -24,9 +24,22 @@ class AuthController {
 
             $return = $_GET['return'] ?? '';
             if (!empty($return)) {
-                header("Location: " . $return);
+                // `return` thường được urlencode từ các controller (vd: CartController)
+                $return = urldecode($return);
+
+                // Chặn open redirect: chỉ cho phép URL nội bộ (relative)
+                $isRelative =
+                    str_starts_with($return, '/') ||
+                    str_starts_with($return, 'index.php') ||
+                    str_starts_with($return, './');
+
+                if ($isRelative) {
+                    header("Location: " . $return);
+                } else {
+                    header("Location: index.php?controller=home");
+                }
             } else {
-                header("Location: index.php?controller=home");
+            header("Location: index.php?controller=home");
             }
             exit();
 

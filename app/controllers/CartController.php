@@ -6,7 +6,7 @@ class CartController {
 
     public function add() {
         if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        session_start();
         }
 
         // Guest phải đăng nhập trước khi thêm vào giỏ
@@ -51,7 +51,7 @@ class CartController {
 
     public function index() {
         if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        session_start();
         }
 
     require_once __DIR__ . "/../models/Order.php";
@@ -76,7 +76,7 @@ class CartController {
     public function update() {
 
     if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+    session_start();
     }
 
     if (isset($_POST['checkout'])) {
@@ -109,7 +109,7 @@ class CartController {
     public function checkout() {
 
         if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        session_start();
         }
 
         if (!isset($_SESSION['user_id'])) {

@@ -18,7 +18,11 @@
     <h2>Đăng ký tài khoản</h2>
     <p class="subtitle">Tạo tài khoản để bắt đầu mua sắm</p>
 
-    <?php $return = isset($_GET['return']) ? htmlspecialchars($_GET['return']) : ''; ?>
+    <?php
+        $returnRaw = $_GET['return'] ?? '';
+        // encode để tránh vỡ query string khi return có chứa `&action=...`
+        $return = $returnRaw !== '' ? urlencode($returnRaw) : '';
+    ?>
     <form method="POST" action="index.php?controller=auth&action=register<?= $return ? '&return=' . $return : '' ?>">
         <input type="text" name="fullname" placeholder="Họ và tên" required>
         <input type="email" name="email" placeholder="Email" required>

@@ -16,17 +16,17 @@
         <a href="index.php?controller=news">Tin tức</a>
         <a href="index.php?controller=pages&action=contact">Liên hệ</a>
         <?php if (isset($_SESSION['user_id'])): ?>
-            <div class="user-dropdown">
+        <div class="user-dropdown">
                 <button class="user-btn">👤 <?= htmlspecialchars($_SESSION['fullname'] ?? 'Tài khoản') ?> ▾</button>
-                <div class="dropdown-content">
-                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+    <div class="dropdown-content">
+      <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                         <a href="index.php?controller=admin&action=dashboard">Dashboard</a>
-                    <?php endif; ?>
-                    <a href="index.php?controller=pages&action=user">Thông Tin</a>
-                    <a href="index.php?controller=cart">Giỏ hàng</a>
-                    <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
-                </div>
-            </div>
+                <?php endif; ?>
+        <a href="index.php?controller=pages&action=user">Thông Tin</a>
+        <a href="index.php?controller=cart">Giỏ hàng</a>
+        <a href="index.php?controller=auth&action=logout">Đăng Xuất</a>
+    </div>
+</div>
         <?php else: ?>
             <a href="index.php?controller=auth&action=login" class="btn">Đăng nhập</a>
             <a href="index.php?controller=auth&action=register" class="btn">Đăng ký</a>

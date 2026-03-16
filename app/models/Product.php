@@ -5,10 +5,8 @@ class Product {
 
     public static function getFeaturedProducts() {
 
-        // Tạo object Database
         $database = new Database();
 
-        // Lấy connection
         $conn = $database->getConnection();
 
         if (!$conn) {

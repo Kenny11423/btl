@@ -14,7 +14,11 @@
     <h2>Đăng nhập</h2>
     <p class="subtitle">Nhập email và mật khẩu để tiếp tục</p>
 
-    <?php $return = isset($_GET['return']) ? htmlspecialchars($_GET['return']) : ''; ?>
+    <?php
+        $returnRaw = $_GET['return'] ?? '';
+        // encode để tránh vỡ query string khi return có chứa `&action=...`
+        $return = $returnRaw !== '' ? urlencode($returnRaw) : '';
+    ?>
     <form method="POST" action="index.php?controller=auth&action=login<?= $return ? '&return=' . $return : '' ?>">
         <input type="email" name="email" placeholder="Email" required>
 
